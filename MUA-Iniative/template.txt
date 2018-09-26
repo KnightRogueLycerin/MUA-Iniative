@@ -1,0 +1,6 @@
+This file is created via the template function
+Name,Iniative,ExtraAction
+#StartOfRoster
+Example,13,0
+#EndOfRoster
+Times saved: 0

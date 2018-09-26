@@ -1,0 +1,10 @@
+Now we're saving information
+#StartOfRoster
+Aldon,1,0
+Gertrud,2,0
+Kwarg,3,0
+Japp,4,0
+Squid,5,1
+Twix,6,1
+#EndOfRoster
+Times saved: 15
