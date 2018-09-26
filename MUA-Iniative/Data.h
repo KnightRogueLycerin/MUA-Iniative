@@ -1,23 +1,7 @@
 #pragma once
 
 #include <string>
-
-struct Character {
-	Character();
-	Character(std::string name, int iniativeBonus, bool extraAction = false);
-
-	~Character();
-
-	// Help functions
-	int getIniative();
-
-	// Data block
-	bool Active;
-	bool ExtraAction;
-	std::string Name;
-	int IniativeRoll;
-	int IniativeBonus;
-};
+#include <vector>
 
 struct Action {
 	typedef enum Type {
@@ -48,4 +32,38 @@ struct Action {
 	std::string Actor;
 	std::string Target;
 	bool hasTarget;
+};
+
+struct Character {
+	Character();
+	Character(std::string name, int iniativeBonus, bool extraAction = false);
+	Character(std::string name, int iniativeBonus, int itemBonus, bool extraAction = false);
+
+	~Character();
+
+	// Help functions
+	int getIniative();
+	void setIniative(int roll);
+	void setIniative(int roll, int item);
+
+	void addAction(Action & a);
+	void addAction(
+		Action::Category type, 
+		std::string name, std::string description);
+	void addAction(
+		Action::Category type, 
+		std::string name, std::string description,
+		std::string target);
+	std::vector<Action> & getActions();
+	void swapActions(int IndexA, int IndexB);
+	void clearActions();
+
+	// Data block
+	bool Active;
+	bool ExtraAction;
+	std::string Name;
+	int IniativeRoll;
+	int IniativeBonus;
+	int IniativeItem;
+	std::vector<Action> Actions;
 };

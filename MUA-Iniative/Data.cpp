@@ -1,23 +1,7 @@
 #include "stdafx.h"
 #include "Data.h"
 
-Character::Character() {
-	Name = "UNSET";
-	Active = false;
-	IniativeRoll = 0;
-	IniativeBonus = 0;
-	ExtraAction = false;
-}
-Character::Character(std::string name, int iniativeBonus, bool extraAction) {
-	Name = name;
-	Active = true;
-	IniativeRoll = 0;
-	IniativeBonus = iniativeBonus;
-	ExtraAction = extraAction;
-}
-Character::~Character() {}
-int Character::getIniative() { return IniativeBonus + IniativeRoll; }
-
+/* Action */
 Action::Action() {
 	Type = Category::Undefined;
 	Initiative = 0;
@@ -46,3 +30,62 @@ Action::Action(Category type, int initiative, std::string name, std::string desc
 	hasTarget = true;
 }
 Action::~Action() {}
+
+/* Character */
+Character::Character() {
+	Name = "UNSET";
+	Active = false;
+	IniativeRoll = 0;
+	IniativeBonus = 0;
+	IniativeItem = 0;
+	ExtraAction = false;
+}
+Character::Character(std::string name, int iniativeBonus, bool extraAction) {
+	Name = name;
+	Active = true;
+	IniativeRoll = 0;
+	IniativeBonus = iniativeBonus;
+	IniativeItem = 0;
+	ExtraAction = extraAction;
+}
+Character::Character(std::string name, int iniativeBonus, int itemBonus, bool extraAction){
+	Name = name;
+	Active = true;
+	IniativeRoll = 0;
+	IniativeBonus = iniativeBonus;
+	IniativeItem = itemBonus;
+	ExtraAction = extraAction;
+}
+Character::~Character() {}
+
+int Character::getIniative() { return IniativeBonus + IniativeRoll + IniativeItem; }
+
+void Character::setIniative(int roll){
+	IniativeRoll = roll;
+}
+void Character::setIniative(int roll, int item){
+	IniativeRoll = roll;
+	IniativeItem = item;
+}
+
+void Character::addAction(Action & a){
+	Actions.push_back(a);
+}
+void Character::addAction(Action::Category type, std::string name, std::string description){
+	Actions.push_back(Action(type, getIniative(), name, description, Name));
+}
+void Character::addAction(Action::Category type, std::string name, std::string description, std::string target){
+	Actions.push_back(Action(type, getIniative(), name, description, Name, target));
+}
+
+std::vector<Action>& Character::getActions(){
+	return Actions;
+}
+
+void Character::swapActions(int IndexA, int IndexB){
+	std::swap(Actions[IndexA], Actions[IndexB]);
+}
+
+void Character::clearActions(){
+	Actions.clear();
+}

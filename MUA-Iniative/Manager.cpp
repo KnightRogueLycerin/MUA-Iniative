@@ -89,8 +89,8 @@ void Manager::save(bool append) {
 	// Save
 	IO::File::Write(filePath, file, false);
 	// Output
-	IO::Console::Print(" Data have been ");
-	IO::Console::Print(" Saved", IO::Console::GREEN, false);
+	IO::Console::Print(" Data have been ", false);
+	IO::Console::Print("SAVED", IO::Console::GREEN, false);
 	IO::Console::Print("!");
 	IO::Console::WaitKey("");
 }
