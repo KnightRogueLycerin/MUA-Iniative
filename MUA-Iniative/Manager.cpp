@@ -76,18 +76,44 @@ void Manager::run() {
 	return;
 }
 
-void Manager::save(bool append) {
+void Manager::save() {
+	std::vector<std::string> saveFile;
+	// Update Roster
+	bool omitting = false;
+	/*****************************************************
+	**					File format						**
+	******************************************************
+	**	name(string),positive integer(>=0),bool(0/1)	**
+	*****************************************************/
+	for (std::string s : file) {
+		if (s == "#EndOfRoster")
+			omitting = false;
+
+		if (!omitting)
+			saveFile.push_back(s);
+
+		if (s == "#StartOfRoster") {
+			omitting = true;
+			for (std::string name : roster->getRoster()) {
+				std::string ch = name+","+std::to_string(roster->getCharacter(name)->IniativeBonus)+",";
+				ch += (roster->getCharacter(name)->ExtraAction) ? "1" : "0";
+
+				saveFile.push_back(ch);
+			}
+		}
+	}
 	// Indexing
-	if (file.back().find("Times saved: ") != std::string::npos) {
-		std::string s = file.back();
+	if (saveFile.back().find("Times saved: ") != std::string::npos) {
+		std::string s = saveFile.back();
 		s.erase(0, 12);
 		int version = std::stoi(s) + 1;
-		file.back() = "Times saved: " + std::to_string(version);
+		saveFile.back() = "Times saved: " + std::to_string(version);
 	}
 	else
 		file.push_back("Times saved: 1");
 	// Save
-	IO::File::Write(filePath, file, false);
+	IO::File::Write(filePath, saveFile, false);
+	file = saveFile;
 	// Output
 	IO::Console::Print(" Data have been ", false);
 	IO::Console::Print("SAVED", IO::Console::GREEN, false);

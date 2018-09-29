@@ -20,5 +20,5 @@ public:
 
 	void run();
 private:
-	void save(bool append = false);
+	void save();
 };

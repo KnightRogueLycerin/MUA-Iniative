@@ -110,11 +110,12 @@ bool Roster::readFile(const std::vector<std::string>& file) {
 	*********************************************/
 	// Search for start & end
 	bool readingRoster = false;
-	for (auto line : file) {
+	for (auto fLine : file) {
 		if (readingRoster) {
-			if (line == "#EndOfRoster")
+			if (fLine == "#EndOfRoster")
 				return true;
 			else {
+				std::string line = fLine;
 				std::string name = "ERR"; int iniative = 0; bool extra = false;
 				// parsing
 				size_t pos = 0;
@@ -151,7 +152,7 @@ bool Roster::readFile(const std::vector<std::string>& file) {
 				add(name, iniative, extra);
 			}
 		}
-		if (line == "#StartOfRoster")
+		if (fLine == "#StartOfRoster")
 			readingRoster = true;
 	}
 	clear();
