@@ -16,7 +16,7 @@ Manager::Manager(const std::string & path) : filePath(path) {
 	useFile = IO::File::Read(filePath, file);
 	abort = !useFile;
 	if (abort) {	// Error handeling
-		IO::Console::Print("> File could not be loaded!!", IO::Console::RED);
+		IO::Console::Out("> File could not be loaded!!", IO::Console::RED);
 		IO::Console::WaitKey();
 		return;
 	}
@@ -42,7 +42,7 @@ void Manager::run() {
 		IO::Console::Clear();
 		switch (input) {
 		default:
-			IO::Console::Print("Could not resolve input: " + input, IO::Console::RED);
+			IO::Console::Out("Could not resolve input: " + input, IO::Console::RED);
 			IO::Console::WaitKey();
 			input = 'q';	// Naïve
 			break;
@@ -115,8 +115,8 @@ void Manager::save() {
 	IO::File::Write(filePath, saveFile, false);
 	file = saveFile;
 	// Output
-	IO::Console::Print(" Data have been ", false);
-	IO::Console::Print("SAVED", IO::Console::GREEN, false);
-	IO::Console::Print("!");
+	IO::Console::Out(" Data have been ", false);
+	IO::Console::Out("SAVED", IO::Console::GREEN, false);
+	IO::Console::Out("!");
 	IO::Console::WaitKey("");
 }

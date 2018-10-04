@@ -13,14 +13,14 @@ namespace IO {
 		void Clear();
 
 		/* Output */
-		void Print(const std::string& s, bool lineBreak = true);
-		void Print(const std::string& s, int color, bool lineBreak = true);
-		void Print(const std::string& s, TextColor color, bool lineBreak = true);
+		void Out(const std::string& s, bool lineBreak = true);
+		void Out(const std::string& s, int color, bool lineBreak = true);
+		void Out(const std::string& s, TextColor color, bool lineBreak = true);
 
 		/* Input */
-		bool Get(int& response);
-		bool Get(char& response);
-		bool Get(std::string& response);
+		bool In(int& response);
+		bool In(char& response);
+		bool In(std::string& response);
 
 		/* Misc */
 		unsigned char WaitKey();

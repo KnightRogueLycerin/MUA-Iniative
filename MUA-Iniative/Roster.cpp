@@ -134,15 +134,15 @@ bool Roster::readFile(const std::vector<std::string>& file) {
 					case 2:	// Extra action
 						if (line != "1" && line != "0") {
 							clear();
-							IO::Console::Print("Incorect roster formating!", IO::Console::TextColor::RED);
+							IO::Console::Out("Incorect roster formating!", IO::Console::TextColor::RED);
 							return false;
 						}
 						else
 							extra = line == "1";
 						break;
-					default:
+					default:https://github.com/KnightRogueLycerin/SecretSanta/tree/master/SecretSantaMutant
 						clear();
-						IO::Console::Print("Should not be able to end up here!", IO::Console::TextColor::RED);
+						IO::Console::Out("Should not be able to end up here!", IO::Console::TextColor::RED);
 						return false;
 						break;
 					}
@@ -156,6 +156,6 @@ bool Roster::readFile(const std::vector<std::string>& file) {
 			readingRoster = true;
 	}
 	clear();
-	IO::Console::Print("End of roster not declared!", IO::Console::TextColor::RED);
+	IO::Console::Out("End of roster not declared!", IO::Console::TextColor::RED);
 	return false;
 }

@@ -11,24 +11,24 @@
 static HANDLE console = GetStdHandle(STD_OUTPUT_HANDLE); // For use of SetConsoleTextAttribute()
 
 														 /* Output */
-void IO::Console::Print(const std::string& s, bool lineBreak) {
+void IO::Console::Out(const std::string& s, bool lineBreak) {
 	if (lineBreak)
 		std::cout << s << std::endl;
 	else
 		std::cout << s;
 }
-void IO::Console::Print(const std::string& s, int color, bool lineBreak) {
+void IO::Console::Out(const std::string& s, int color, bool lineBreak) {
 	// first hexs is for background and second hex is for text colors
 	SetConsoleTextAttribute(console, color);
-	Print(s, lineBreak);
+	Out(s, lineBreak);
 	SetConsoleTextAttribute(console, IO::Console::WHITE);
 }
-void IO::Console::Print(const std::string& s, TextColor color, bool lineBreak) {
-	Print(s, (int)color, lineBreak);
+void IO::Console::Out(const std::string& s, TextColor color, bool lineBreak) {
+	Out(s, (int)color, lineBreak);
 }
 
 /* Input */
-bool IO::Console::Get(int & response) {
+bool IO::Console::In(int & response) {
 	int input = 0;
 	std::cin >> input;
 	if (std::cin.fail()) {
@@ -39,18 +39,15 @@ bool IO::Console::Get(int & response) {
 	response = input;
 	return true;
 }
-bool IO::Console::Get(char & response) {
-	char input = 0;
-	std::cin >> input;
-	if (std::cin.fail()) {
-		std::cin.clear();
-		std::cin.ignore(256, '\n');
-		return false;
-	}
-	response = input;
+bool IO::Console::In(char & response) {
+	// Doesn't wait for enter key (good/bad?)
+	unsigned char in = _getch();
+	if (in == 0 || in == 0xE0)
+		in = _getch();
+	response = in;
 	return true;
 }
-bool IO::Console::Get(std::string & response) {
+bool IO::Console::In(std::string & response) {
 	response.clear();
 	std::cin >> response;
 	if (!response.empty())
@@ -85,14 +82,14 @@ unsigned char IO::Console::WaitKey() {
 }
 unsigned char IO::Console::WaitKey(const std::string & s) {
 	if (s.size() > 0)
-		Print(s, IO::Console::DARK_GREY);
+		Out(s, IO::Console::DARK_GREY);
 	else
-		Print("Press any key to continue...", IO::Console::DARK_GREY);
+		Out("Press any key to continue...", IO::Console::DARK_GREY);
 	return WaitKey();
 }
 void IO::Console::ColorChart() {
 	for (int i = 0; i < 256; i++) {
-		Print(" [" + std::to_string(i) + "]->########123********abc||||||||ABC%%%%%%%%", i);
+		Out(" [" + std::to_string(i) + "]->########123********abc||||||||ABC%%%%%%%%", i);
 	}
 }
 
