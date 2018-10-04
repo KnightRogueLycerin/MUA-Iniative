@@ -116,7 +116,7 @@ bool editCharacter(Character* c) {
 	do
 	{
 		// Header
-		Title(" Edidting " + c->Name);
+		Title(" Editing " + c->Name);
 		UI::printCharacter(c);
 		UI::printSeperator();
 		// What would you like to change (Quit)?
@@ -199,7 +199,6 @@ char UI::editRoster(Roster * r) {
 				selected = false;
 				IO::Console::Out("Select characater:\t", false);
 			}
-
 		}
 		// Character edit
 		UI::printSeperator();
