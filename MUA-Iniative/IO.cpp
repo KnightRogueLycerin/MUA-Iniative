@@ -49,6 +49,8 @@ bool IO::Console::In(char & response) {
 }
 bool IO::Console::In(std::string & response) {
 	response.clear();
+	std::cin.clear();
+	// std::getline(std::cin, response);
 	std::cin >> response;
 	if (!response.empty())
 		return true;

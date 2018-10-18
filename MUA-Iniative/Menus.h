@@ -14,14 +14,13 @@
 namespace UI {
 	/* Menues */
 	char mainMenu();
-	char startCombat(Round* r);
+	char startCombat(Roster* rr, std::vector<Round*>* rd);
 	/* Editor */
 	char editRoster(Roster* r);
 	/* Display functions */
 	char displayRoster(Roster* r);
-	char displayActions(Round* r);
 	/* Parts */
 	void printCharacter(const Character* c);
-	void printAction(const Action* a);
+	void printAction(const Action& a);
 	void printSeperator();
 }

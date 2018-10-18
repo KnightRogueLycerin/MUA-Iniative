@@ -14,13 +14,14 @@ struct Action {
 	Action(
 		Category type,
 		int initiative,
-		std::string name, std::string description,
+		std::string name,
 		std::string actor);
 	Action(
 		Category type,
 		int initiative,
-		std::string name, std::string description,
-		std::string actor, std::string target);
+		std::string name,
+		std::string actor, 
+		std::string target);
 
 	~Action();
 
@@ -28,7 +29,6 @@ struct Action {
 	Category Type;
 	int Initiative;
 	std::string Name;
-	std::string Description;
 	std::string Actor;
 	std::string Target;
 	bool hasTarget;
@@ -46,14 +46,6 @@ struct Character {
 	void setIniative(int roll);
 	void setIniative(int roll, int item);
 
-	void addAction(Action & a);
-	void addAction(
-		Action::Category type, 
-		std::string name, std::string description);
-	void addAction(
-		Action::Category type, 
-		std::string name, std::string description,
-		std::string target);
 	std::vector<Action> & getActions();
 	void swapActions(int IndexA, int IndexB);
 	void clearActions();

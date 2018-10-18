@@ -54,13 +54,9 @@ void Manager::run() {
 		case 'R':
 			input = UI::displayRoster(roster);
 			break;
-		case 'a':
-		case 'A':
-			input = UI::displayActions(rounds->back());
-			break;
 		case 'c':
 		case 'C':
-			input = UI::startCombat(rounds->back());
+			input = UI::startCombat(roster, rounds);
 			break;
 		case 'e':
 		case 'E':

@@ -6,25 +6,22 @@ Action::Action() {
 	Type = Category::Undefined;
 	Initiative = 0;
 	Name = "undefined";
-	Description = "undefined";
 	Actor = "UNSET";
 	Target = "UNSET";
 	hasTarget = false;
 }
-Action::Action(Category type, int initiative, std::string name, std::string description, std::string actor) {
+Action::Action(Category type, int initiative, std::string name, std::string actor) {
 	Type = type;
 	Initiative = initiative;
 	Name = name;
-	Description = description;
 	Actor = actor;
 	Target = "UNSET";
 	hasTarget = false;
 }
-Action::Action(Category type, int initiative, std::string name, std::string description, std::string actor, std::string target) {
+Action::Action(Category type, int initiative, std::string name, std::string actor, std::string target) {
 	Type = type;
 	Initiative = initiative;
 	Name = name;
-	Description = description;
 	Actor = actor;
 	Target = target;
 	hasTarget = true;
@@ -66,16 +63,6 @@ void Character::setIniative(int roll){
 void Character::setIniative(int roll, int item){
 	IniativeRoll = roll;
 	IniativeItem = item;
-}
-
-void Character::addAction(Action & a){
-	Actions.push_back(a);
-}
-void Character::addAction(Action::Category type, std::string name, std::string description){
-	Actions.push_back(Action(type, getIniative(), name, description, Name));
-}
-void Character::addAction(Action::Category type, std::string name, std::string description, std::string target){
-	Actions.push_back(Action(type, getIniative(), name, description, Name, target));
 }
 
 std::vector<Action>& Character::getActions(){

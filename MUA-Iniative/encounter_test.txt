@@ -1,10 +1,11 @@
 Now we're saving information
 #StartOfRoster
-Aldon,1,0
-Gertrud,2,0
+Aldon,13,0
+Gertrud,11,0
 Kwarg,3,1
-Japp,4,0
+Japp,15,0
 Squid,12,0
-Twix,6,1
+Twix,14,0
+Steve McQween,12,1
 #EndOfRoster
-Times saved: 36
+Times saved: 45
