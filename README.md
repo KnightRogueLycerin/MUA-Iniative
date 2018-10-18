@@ -1,5 +1,5 @@
 # MUA-Iniative
-[WIP]
+[MVP stage, put on the self for now]
 
 Iniative tacker based on the Mutant: Undegångens Arvtagare rules system.
 
